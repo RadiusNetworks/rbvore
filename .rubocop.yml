@@ -1,0 +1,22 @@
+inherit_mode:
+  merge:
+    - Exclude
+    - IgnoredPatterns
+
+inherit_gem:
+  radius-spec: common_rubocop_rails.yml
+
+AllCops:
+  Exclude:
+    - 'rbvore.gemspec'
+    - 'bin/console'
+    - 'Gemfile'
+
+Rails/TimeZone:
+  Enabled: false
+
+Rails/Blank:
+  Enabled: false
+
+Layout/AlignHash:
+  Enabled: false
