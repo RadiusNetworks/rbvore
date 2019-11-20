@@ -49,22 +49,14 @@ module Rbvore
       @host = host
     end
 
-    # rubocop:disable Metrics/MethodLength,Metrics/ParameterLists
-    def request(method, endpoint, body: nil, params: {}, headers: {}, api_key: nil)
+    def request(method, endpoint, body: nil, params: {}, headers: {}, api_key: nil) # rubocop:disable Metrics/ParameterLists
       api_key ||= DEFAULT_API_KEY
       uri = build_uri(endpoint, params)
       http_start(uri) { |http|
         http.request(
-          build_request(
-            method,
-            uri,
-            body: body,
-            headers: headers,
-            api_key: api_key,
-          ),
+          build_request(method, uri, body: body, headers: headers, api_key: api_key),
         )
       }
-      # rubocop:enable Metrics/MethodLength,Metrics/ParameterLists
     end
 
   private
@@ -83,26 +75,14 @@ module Rbvore
       }
     end
 
-    def build_request(method, uri, body: nil, headers: {}, api_key: nil) # rubocop:disable Metrics/MethodLength
-      method_class = case method
-                     when :get
-                       Net::HTTP::Get
-                     when :post
-                       Net::HTTP::Post
-                     end
-      method_class.new(uri.request_uri).tap { |r|
+    def build_request(method, uri, body: nil, headers: {}, api_key: nil)
+      method_class(method).new(uri.request_uri).tap { |r|
         headers.each do |key, value|
           r.add_field(key, value)
         end
         r.add_field "Accept", "application/json"
         r.add_field "Api-Key", api_key unless api_key.nil?
-
-        if body.is_a? String
-          r.body = body
-        elsif !body.nil?
-          r.add_field "Content-Type", "application/json"
-          r.body = body.to_json
-        end
+        set_body(r, body)
       }
     end
 
@@ -112,6 +92,24 @@ module Rbvore
 
     def http_opts
       { use_ssl: true }
+    end
+
+    def set_body(request, body)
+      if body.is_a? String
+        request.body = body
+      elsif !body.nil?
+        request.add_field "Content-Type", "application/json"
+        request.body = body.to_json
+      end
+    end
+
+    def method_class(name)
+      case name.to_sym
+      when :get
+        Net::HTTP::Get
+      when :post
+        Net::HTTP::Post
+      end
     end
   end
 end

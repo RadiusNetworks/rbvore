@@ -44,7 +44,7 @@ module Rbvore
     return name if resource_subclass?(name)
 
     resource_classes.each do |klass|
-      return klass if [klass.singularize, klass.list_of, klass.pluralize].include?(name.to_s)
+      return klass if [klass.singularize, klass.list_name, klass.pluralize].include?(name.to_s)
     end
 
     raise Rbvore::Error, "No Rbvore resource classes found for #{name.inspect}"

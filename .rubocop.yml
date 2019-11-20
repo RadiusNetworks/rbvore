@@ -20,7 +20,3 @@ Rails/Blank:
 
 Layout/AlignHash:
   Enabled: false
-
-Naming/AccessorMethodName:
-  Exclude:
-    - lib/rbvore/resource.rb

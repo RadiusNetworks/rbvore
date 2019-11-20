@@ -63,7 +63,7 @@ module Rbvore
       send(setter, value) if respond_to?(setter)
     end
 
-    def set_attributes(hash)
+    def set_attributes(hash) # rubocop:disable Naming/AccessorMethodName
       hash.each do |key, value|
         set_attribute(key, value)
       end
@@ -103,8 +103,8 @@ module Rbvore
       @singularize ||= underscore(name.split("::").last)
     end
 
-    def self.list_of
-      @list_of ||= "#{singularize}_list"
+    def self.list_name
+      @list_name ||= "#{singularize}_list"
     end
 
     def self.pluralize
