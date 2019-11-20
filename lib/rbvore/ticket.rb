@@ -5,7 +5,7 @@ module Rbvore
     ENDPOINT = "/tickets"
 
     attr_accessor :id, :guest_count, :name, :open, :ticket_number, :totals, :void,
-                  :order_type, :location_id
+                  :location_id
     attr_timestamp_accessor :closed_at, :opened_at
     attr_collections(
       items: Item,

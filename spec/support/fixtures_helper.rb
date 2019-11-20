@@ -1,4 +1,5 @@
 require 'pathname'
+# frozen_string_literal: true
 
 module Rbvore
   module RSpec

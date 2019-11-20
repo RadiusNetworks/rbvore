@@ -15,8 +15,8 @@ module Rbvore
       @type_name ||= type.match(/name=(?<name>[a-z\_]+)/).named_captures["name"]
     end
 
-    def klass
-      Resource.klass_for(type_name)
+    def resource_class
+      Rbvore.constantize(type_name)
     end
 
     def list?
@@ -41,9 +41,9 @@ module Rbvore
 
     def parse_resources(json_body)
       if list?
-        Resource.parse_collection(json_body, klass)
+        Resource.parse_collection(json_body, resource_class)
       else
-        Resource.parse_object(json_body, klass)
+        Resource.parse_object(json_body, resource_class)
       end
     end
   end

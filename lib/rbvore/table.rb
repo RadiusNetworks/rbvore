@@ -33,7 +33,7 @@ module Rbvore
       )
       raise response.error unless response.success?
 
-      Resource.parse_collection(response.json_body, self)
+      parse_collection(response.json_body, self)
     end
 
     def self.get(location_id:, id:, params: {}, api_key: nil)
@@ -45,7 +45,7 @@ module Rbvore
       )
       raise response.error unless response.success?
 
-      Resource.parse_object(response.json_body, self)
+      parse_object(response.json_body, self)
     end
   end
 end

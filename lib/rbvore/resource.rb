@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 module Rbvore
-  class Resource # rubocop:disable Metrics/ClassLength
+  class Resource
+    extend Parsers
+    include Parsers
+
     attr_reader :links
 
     def self.encode_form_data(body)
@@ -26,7 +29,7 @@ module Rbvore
         define_method("#{name}=") do |obj|
           instance_variable_set(
             "@#{name}",
-            self.class.parse_object(obj, self.class.klass_for(klass)),
+            parse_object(obj, klass),
           )
         end
       end
@@ -40,7 +43,7 @@ module Rbvore
         define_method("#{name}=") do |ary|
           instance_variable_set(
             "@#{name}",
-            self.class.parse_collection(ary, self.class.klass_for(klass)),
+            parse_collection(ary, klass),
           )
         end
       end
@@ -50,7 +53,7 @@ module Rbvore
       attrs.each do |name|
         attr_reader(name)
         define_method("#{name}=") { |value|
-          instance_variable_set("@#{name}", self.class.parse_date(value))
+          instance_variable_set("@#{name}", parse_timestamp(value))
         }
       end
     end
@@ -60,7 +63,7 @@ module Rbvore
       send(setter, value) if respond_to?(setter)
     end
 
-    def set_attributes(hash) # rubocop:disable Naming/AccessorMethodName
+    def set_attributes(hash)
       hash.each do |key, value|
         set_attribute(key, value)
       end
@@ -74,34 +77,6 @@ module Rbvore
       raise UnknownLinkError, "Unknown link `#{name}` for #{self.class.singularize}" if link.nil?
 
       link.fetch(api_key: api_key, params: params)
-    end
-
-    def self.parse_collection(ary, klass)
-      if ary.is_a? Hash
-        list = ary.dig("_embedded", klass.pluralize)
-        ary = list if list.is_a? Array
-      end
-      ary.map { |obj|
-        parse_object(obj, klass)
-      }
-    end
-
-    def self.parse_object(obj, klass)
-      if obj.is_a?(Hash)
-        klass.new(obj)
-      else
-        obj
-      end
-    end
-
-    def self.parse_date(value)
-      return nil if value.nil?
-
-      if value.is_a? Time
-        value
-      else
-        Time.at(value)
-      end
     end
 
     def _links=(hash)
@@ -134,26 +109,6 @@ module Rbvore
 
     def self.pluralize
       @pluralize ||= singularize + "s"
-    end
-
-    def self.resource_subclass?(klass)
-      klass.respond_to?(:superclass) && klass.superclass == Resource
-    end
-
-    def self.klasses
-      @klasses ||= Rbvore.constants.map { |const|
-        klass = Rbvore.const_get(const)
-        klass if resource_subclass?(klass)
-      }.compact
-    end
-
-    def self.klass_for(name)
-      return name if resource_subclass?(name)
-
-      klasses.each do |klass|
-        return klass if [klass.singularize, klass.list_of, klass.pluralize].include?(name)
-      end
-      return nil
     end
   end
 end
