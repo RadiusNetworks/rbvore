@@ -25,28 +25,22 @@ module Rbvore
       "#{ENDPOINT}/#{location_id}"
     end
 
-    def self.all(api_key: nil)
-      response = api.request(
-        :get,
+    def self.all(params: {}, api_key: nil)
+      api.fetch_all(
         ENDPOINT,
+        Location,
+        params: params,
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      response.json_body["_embedded"]["locations"].map { |obj|
-        Location.new(obj)
-      }
     end
 
-    def self.get(id:, api_key: nil)
-      response = api.request(
-        :get,
+    def self.get(id:, params: {}, api_key: nil)
+      api.fetch_one(
         endpoint(id),
+        Location,
+        params: params,
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      Location.new(response.json_body)
     end
 
     def initialize(hash)

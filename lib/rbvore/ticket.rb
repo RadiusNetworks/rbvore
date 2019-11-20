@@ -33,15 +33,12 @@ module Rbvore
     end
 
     def self.all(location_id:, open: nil, table_id: nil, api_key: nil)
-      response = api.request(
-        :get,
+      api.fetch_all(
         endpoint(location_id),
+        Ticket,
         params: build_where_clause(open: open, table_id: table_id),
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      parse_collection(response.json_body, Ticket)
     end
 
     def self.build_where_clause(open: nil, table_id: nil) # rubocop:disable Metrics/CyclomaticComplexity

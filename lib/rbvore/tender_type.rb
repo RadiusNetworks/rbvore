@@ -18,17 +18,13 @@ module Rbvore
       Location.endpoint(location_id) + ENDPOINT
     end
 
-    def self.all(location_id:, api_key: nil)
-      response = api.request(
-        :get,
+    def self.all(location_id:, params: {}, api_key: nil)
+      api.fetch_all(
         endpoint(location_id),
+        TenderType,
+        params: params,
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      response.json_body["_embedded"]["tender_types"].map { |obj|
-        TenderType.new(obj)
-      }
     end
   end
 end

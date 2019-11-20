@@ -59,6 +59,30 @@ module Rbvore
       }
     end
 
+    def fetch_all(endpoint, resource_class, params: {}, api_key: nil)
+      response = request(
+        :get,
+        endpoint,
+        params: params,
+        api_key: api_key,
+      )
+      raise response.error unless response.success?
+
+      Resource.parse_collection(response.json_body, resource_class)
+    end
+
+    def fetch_one(endpoint, resource_class, params: {}, api_key: nil)
+      response = request(
+        :get,
+        endpoint,
+        params: params,
+        api_key: api_key,
+      )
+      raise response.error unless response.success?
+
+      Resource.parse_object(response.json_body, resource_class)
+    end
+
   private
 
     def build_uri(endpoint, params = nil)

@@ -25,27 +25,21 @@ module Rbvore
     end
 
     def self.all(location_id:, params: {}, api_key: nil)
-      response = api.request(
-        :get,
+      api.fetch_all(
         endpoint(location_id),
+        Table,
         params: params,
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      parse_collection(response.json_body, self)
     end
 
     def self.get(location_id:, id:, params: {}, api_key: nil)
-      response = api.request(
-        :get,
+      api.fetch_one(
         endpoint(location_id, id),
+        Table,
         params: params,
         api_key: api_key,
       )
-      raise response.error unless response.success?
-
-      parse_object(response.json_body, self)
     end
   end
 end
