@@ -2,8 +2,6 @@
 
 module Rbvore
   class Ticket < Resource
-    ENDPOINT = "/tickets"
-
     attr_accessor :id, :guest_count, :name, :open, :ticket_number, :totals, :void,
                   :location_id
     attr_timestamp_accessor :closed_at, :opened_at
@@ -20,22 +18,9 @@ module Rbvore
       revenue_center: RevenueCenter,
     )
 
-    def self.api
-      @api ||= API.new
-    end
-
-    def self.endpoint(location_id, ticket_id = nil)
-      if ticket_id.nil?
-        Location.endpoint(location_id) + ENDPOINT
-      else
-        Location.endpoint(location_id) + ENDPOINT + "/#{ticket_id}"
-      end
-    end
-
-    def self.all(location_id:, open: nil, table_id: nil, api_key: nil)
-      api.fetch_all(
-        endpoint(location_id),
-        Ticket,
+    def self.fetch_all(location_id:, open: nil, table_id: nil, api_key: nil)
+      super(
+        location_id: location_id,
         params: build_where_clause(open: open, table_id: table_id),
         api_key: api_key,
       )

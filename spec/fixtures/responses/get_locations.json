@@ -1,0 +1,127 @@
+{
+	"_embedded": {
+		"locations": [{
+			"_links": {
+				"auth": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/auth/",
+					"type": "application/json; name=location_auth"
+				},
+				"clock_entries": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/clock_entries/",
+					"type": "application/json; name=clock_entry_list"
+				},
+				"discounts": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/discounts/",
+					"type": "application/json; name=discount_list"
+				},
+				"employees": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/employees/",
+					"type": "application/json; name=employee_list"
+				},
+				"jobs": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/jobs/",
+					"type": "application/json; name=job_list"
+				},
+				"menu": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/menu/",
+					"type": "application/json; name=menu"
+				},
+				"order_types": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/order_types/",
+					"type": "application/json; name=order_type_list"
+				},
+				"price_check": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/price_check/",
+					"type": "application/json; name=price_check"
+				},
+				"reports": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/reports/",
+					"type": "application/json; name=reports"
+				},
+				"revenue_centers": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/revenue_centers/",
+					"type": "application/json; name=revenue_center_list"
+				},
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/",
+					"type": "application/json; name=location"
+				},
+				"shifts": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/shifts/",
+					"type": "application/json; name=shift_list"
+				},
+				"tables": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tables/",
+					"type": "application/json; name=table_list"
+				},
+				"tender_types": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/",
+					"type": "application/json; name=tender_type_list"
+				},
+				"terminals": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/terminals/",
+					"type": "application/json; name=terminal_list"
+				},
+				"tickets": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/",
+					"type": "application/json; name=ticket_list"
+				},
+				"void_types": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/void_types/",
+					"type": "application/json; name=void_type_list"
+				}
+			},
+			"address": {
+				"city": null,
+				"country": null,
+				"state": null,
+				"street1": null,
+				"street2": null,
+				"zip": null
+			},
+			"concept_name": "Virtual POS",
+			"created": 1573156968,
+			"custom_id": null,
+			"development": true,
+			"display_name": "Virtual POS",
+			"google_place_id": null,
+			"health": {
+				"agent": {
+					"average_cpu": null,
+					"average_memory": null,
+					"healthy": true,
+					"processes": null
+				},
+				"healthy": true,
+				"system": {
+					"average_cpu": null,
+					"average_memory": null,
+					"healthy": true
+				},
+				"tickets": {
+					"response_time": null,
+					"status": "functional"
+				}
+			},
+			"id": "ckga7qLi",
+			"latitude": null,
+			"longitude": null,
+			"modified": 1573156968,
+			"name": "Virtual POS",
+			"owner": "Omnivore",
+			"phone": null,
+			"pos_type": "mock",
+			"status": "online",
+			"timezone": null,
+			"website": null
+		}]
+	},
+	"_links": {
+		"self": {
+			"href": "https://api.omnivore.io/1.0/locations/",
+			"type": "application/json; name=location_list"
+		}
+	},
+	"count": 1,
+	"limit": 500
+}

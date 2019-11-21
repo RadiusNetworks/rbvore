@@ -9,7 +9,6 @@ end
 
 require 'rbvore/api'
 require 'rbvore/link'
-require 'rbvore/parsers'
 require 'rbvore/resource'
 require 'rbvore/menu_item'
 require 'rbvore/item_modifier'

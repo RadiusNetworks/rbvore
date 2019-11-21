@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
+require 'cgi'
+require 'rbvore/resource/parsers'
+require 'rbvore/resource/names'
+require 'rbvore/resource/fetchers'
+
 module Rbvore
   class Resource
+    extend Names
+    extend Fetchers
     extend Parsers
     include Parsers
 
@@ -87,28 +94,6 @@ module Rbvore
 
     def inspect
       "#<#{self.class} #{[@id, @name || @display_name].join(" ")}>"
-    end
-
-    def self.underscore(value)
-      return value unless /[A-Z-]/.match?(value)
-
-      word = value.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
-      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      word.tr!("-", "_")
-      word.downcase!
-      word
-    end
-
-    def self.singularize
-      @singularize ||= underscore(name.split("::").last)
-    end
-
-    def self.list_name
-      @list_name ||= "#{singularize}_list"
-    end
-
-    def self.pluralize
-      @pluralize ||= singularize + "s"
     end
   end
 end

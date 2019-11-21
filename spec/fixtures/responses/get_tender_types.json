@@ -1,0 +1,57 @@
+{
+	"_embedded": {
+		"tender_types": [{
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"allows_tips": true,
+			"id": "100",
+			"name": "3rd Party",
+			"pos_id": "100"
+		}, {
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/200/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"allows_tips": true,
+			"id": "200",
+			"name": "Cash",
+			"pos_id": "200"
+		}, {
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/300/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"allows_tips": true,
+			"id": "300",
+			"name": "VISA/MC/AMEX",
+			"pos_id": "300"
+		}, {
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/400/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"allows_tips": true,
+			"id": "400",
+			"name": "Gift Card",
+			"pos_id": "400"
+		}]
+	},
+	"_links": {
+		"self": {
+			"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/",
+			"type": "application/json; name=tender_type_list"
+		}
+	},
+	"count": 4,
+	"limit": 1000
+}

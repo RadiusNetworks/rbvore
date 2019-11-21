@@ -24,19 +24,19 @@ Or install it yourself as:
 
 ```rb
 location_id = "xxxxx"
-location = Rbvore::Location.get(id: location_id)
+location = Rbvore::Location.fetch_one(id: location_id)
 tables = location.tables
 
 # or
 
-tables = Rbvore::Table.all(location_id: location_id)
+tables = Rbvore::Table.fetch_all(location_id: location_id)
 ```
 
 ### Get open tickets for a given location and table
 ```rb
 location_id = "xxxxxx"
 table_id = 2
-tickets = Rbvore::Ticket.all(location_id: location_id, table_id: 2, open: true)
+tickets = Rbvore::Ticket.fetch_all(location_id: location_id, table_id: 2, open: true)
 ```
 
 ### Create 3rd-party payment for ticket

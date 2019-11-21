@@ -1,0 +1,148 @@
+{
+	"_embedded": {
+		"payments": [{
+			"_embedded": {
+				"tender_type": {
+					"_links": {
+						"self": {
+							"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/200/",
+							"type": "application/json; name=tender_type"
+						}
+					},
+					"allows_tips": true,
+					"id": "200",
+					"name": "Cash",
+					"pos_id": "200"
+				}
+			},
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/2/payments/166471/",
+					"type": "application/json; name=payment"
+				},
+				"tender_type": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/200/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"amount": 699,
+			"change": 0,
+			"comment": null,
+			"full_name": null,
+			"id": "166471",
+			"last4": null,
+			"status": null,
+			"tip": 200,
+			"type": "cash"
+		}, {
+			"_embedded": {
+				"tender_type": {
+					"_links": {
+						"self": {
+							"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+							"type": "application/json; name=tender_type"
+						}
+					},
+					"allows_tips": true,
+					"id": "100",
+					"name": "3rd Party",
+					"pos_id": "100"
+				}
+			},
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/2/payments/167855/",
+					"type": "application/json; name=payment"
+				},
+				"tender_type": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"amount": 0,
+			"change": 0,
+			"comment": null,
+			"full_name": null,
+			"id": "167855",
+			"last4": null,
+			"status": null,
+			"tip": 100,
+			"type": "other"
+		}, {
+			"_embedded": {
+				"tender_type": {
+					"_links": {
+						"self": {
+							"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+							"type": "application/json; name=tender_type"
+						}
+					},
+					"allows_tips": true,
+					"id": "100",
+					"name": "3rd Party",
+					"pos_id": "100"
+				}
+			},
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/2/payments/167856/",
+					"type": "application/json; name=payment"
+				},
+				"tender_type": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"amount": 0,
+			"change": 0,
+			"comment": null,
+			"full_name": null,
+			"id": "167856",
+			"last4": null,
+			"status": null,
+			"tip": 100,
+			"type": "other"
+		}, {
+			"_embedded": {
+				"tender_type": {
+					"_links": {
+						"self": {
+							"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+							"type": "application/json; name=tender_type"
+						}
+					},
+					"allows_tips": true,
+					"id": "100",
+					"name": "3rd Party",
+					"pos_id": "100"
+				}
+			},
+			"_links": {
+				"self": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/2/payments/167857/",
+					"type": "application/json; name=payment"
+				},
+				"tender_type": {
+					"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tender_types/100/",
+					"type": "application/json; name=tender_type"
+				}
+			},
+			"amount": 35,
+			"change": 0,
+			"comment": null,
+			"full_name": null,
+			"id": "167857",
+			"last4": null,
+			"status": null,
+			"tip": 0,
+			"type": "other"
+		}]
+	},
+	"_links": {
+		"self": {
+			"href": "https://api.omnivore.io/1.0/locations/ckga7qLi/tickets/2/payments/",
+			"type": "application/json; name=payment_list"
+		}
+	},
+	"count": 4
+}

@@ -9,6 +9,7 @@ module Rbvore
   class API
     DEFAULT_HOST = ENV.fetch("OMNIVORE_HOST", "api.omnivore.io")
     DEFAULT_API_KEY = ENV.fetch("OMNIVORE_API_KEY", nil)
+    BASE_ENDPOINT = "/1.0"
 
     class Error < Error
       extend Forwardable
@@ -81,6 +82,19 @@ module Rbvore
       raise response.error unless response.success?
 
       Resource.parse_object(response.json_body, resource_class)
+    end
+
+    def self.endpoint(*items)
+      ([BASE_ENDPOINT] + items.map { |item|
+        case
+        when Rbvore.resource_subclass?(item)
+          item.pluralize
+        when item.nil?
+          nil
+        else
+          item.to_s
+        end
+      }.compact).join("/")
     end
 
   private
