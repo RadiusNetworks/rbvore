@@ -22,7 +22,13 @@ module Rbvore
       end
 
       def pluralize
-        @pluralize ||= singularize + "s"
+        @pluralize ||=
+          case
+          when singularize.end_with?('y')
+            singularize[0..-2] + 'ies'
+          else
+            singularize + "s"
+          end
       end
     end
   end

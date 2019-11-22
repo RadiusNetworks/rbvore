@@ -4,6 +4,7 @@ require 'uri'
 require 'net/http'
 require 'json'
 require 'forwardable'
+require 'cgi'
 
 module Rbvore
   class API
@@ -109,8 +110,12 @@ module Rbvore
       URI.parse(url).tap { |uri|
         next if params.nil? || params.empty?
 
-        uri.query = Resource.encode_form_data(params)
+        uri.query = encode_form_data(params)
       }
+    end
+
+    def encode_form_data(body)
+      body.map { |key, value| "#{key}=#{CGI.escape(value)}" }.join("&")
     end
 
     def build_request(method, uri, body: nil, headers: {}, api_key: nil)

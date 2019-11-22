@@ -2,14 +2,16 @@
 
 module Rbvore
   class Ticket < Resource
-    attr_accessor :id, :guest_count, :name, :open, :ticket_number, :totals, :void,
-                  :location_id
+    attr_accessor :id, :pos_id, :guest_count, :name, :open, :ticket_number, :totals,
+                  :location_id, :auto_send, :fire_date, :fire_time, :ready_date,
+                  :ready_time, :void
     attr_timestamp_accessor :closed_at, :opened_at
     attr_collections(
       items: Item,
       payments: Payment,
       service_charges: TicketServiceCharge,
       discounts: TicketDiscount,
+      voided_items: VoidedItem,
     )
     attr_objects(
       table: Table,

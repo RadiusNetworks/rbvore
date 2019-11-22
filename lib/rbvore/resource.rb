@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'cgi'
 require 'rbvore/resource/parsers'
 require 'rbvore/resource/names'
 require 'rbvore/resource/fetchers'
@@ -13,10 +12,6 @@ module Rbvore
     include Parsers
 
     attr_reader :links
-
-    def self.encode_form_data(body)
-      body.map { |key, value| "#{key}=#{CGI.escape(value)}" }.join("&")
-    end
 
     # define_link_getter sets up an attribute getter that fetches from
     # the associated link, if available
@@ -74,9 +69,6 @@ module Rbvore
       hash.each do |key, value|
         set_attribute(key, value)
       end
-      return if hash["_embedded"].nil?
-
-      set_attributes(hash["_embedded"])
     end
 
     def fetch_link(name, api_key: nil, params: {})
@@ -90,6 +82,10 @@ module Rbvore
       @links = hash.each_with_object({}) { |(name, data), memo|
         memo[name.to_sym] = Link.new(data)
       }
+    end
+
+    def _embedded=(hash)
+      set_attributes(hash)
     end
 
     def inspect
