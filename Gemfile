@@ -7,4 +7,4 @@ gem "pronto"
 gem "pronto-brakeman"
 gem "pronto-eslint"
 gem "pronto-rubocop"
-gem "radius-spec", github: "RadiusNetworks/radius-spec", branch: "update-rubocop-version", require: false
+gem "radius-spec", github: "RadiusNetworks/radius-spec", require: false
